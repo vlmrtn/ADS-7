@@ -39,7 +39,7 @@ int Train::getLength() {
     return length;
 }
 
-int Train::getOpCount() {
+int Train::getOpCount() const {
     int count = 0;
     if (!first) return 0;
     const Cage* current = first;
