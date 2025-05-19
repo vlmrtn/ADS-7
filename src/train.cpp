@@ -40,13 +40,3 @@ int Train::getOpCount() {
 
     return count;
 }
-
-Train::~Train() {
-    if (!first) return;
-    Cage* current = first;
-    do {
-        Cage* next = current->next;
-        delete current;
-        current = next;
-    } while (current != first);
-}
