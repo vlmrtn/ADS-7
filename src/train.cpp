@@ -2,6 +2,17 @@
 #include "train.h"
 Train::Train() : first(nullptr), countOp(0) {}
 
+Train::~Train() {
+    if (!first) return;
+
+    Cage* current = first->next;
+    while (current != first) {
+        Cage* next = current->next;
+        delete current;
+        current = next;
+    }
+    delete first;
+}
 void Train::addCar(bool light) {
     Cage* newCage = new Cage{light, nullptr, nullptr};
     if (!first) {
@@ -20,7 +31,7 @@ void Train::addCar(bool light) {
 int Train::getLength() {
     if (!first) return 0;
     int length = 0;
-    Cage* current = first;
+    const Cage* current = first;
     do {
         length++;
         current = current->next;
@@ -30,13 +41,12 @@ int Train::getLength() {
 
 int Train::getOpCount() {
     int count = 0;
-    Cage* current = first;
-    if (!current) return 0;
-
+    if (!first) return 0;
+    const Cage* current = first;
     do {
-        count++; // 1 операция для каждой лампочки
+        if (current->light)  count++;
         current = current->next;
     } while (current != first);
-
     return count;
 }
+
