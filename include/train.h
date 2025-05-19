@@ -4,13 +4,13 @@
 
 class Train {
  private:
-  struct Car {
+  struct Cage {
     bool light; // состояние лампочки
-    Car *next;
-    Car *prev;
+    Cage *next;
+    Cage *prev;
   };
   int countOp; // счетчик шагов (число переходов из вагона в вагон)
-  Car *first; // точка входа в поезд (первый вагон)
+  Cage *first; // точка входа в поезд (первый вагон)
  public:
   Train();
   void addCar(bool light); // добавить вагон с начальным состоянием лампочки
