@@ -18,6 +18,5 @@ class Train {
   int getLength();          // вычислить длину поезда
   int getOpCount() const;
   void toggleLight(Cage* cage);
-
 };
 #endif  // INCLUDE_TRAIN_H_
