@@ -32,15 +32,32 @@ void Train::addCar(bool light) {
 }
 int Train::getLength() {
     if (!first) return 0;
-    int length = 0;
-    const Cage* current = first;
-    do {
-        length++;
-        current = current->next;
-    } while (current != first);
-    return length;
-}
+    countOp = 0;
+    Cage* currentCar = first;
+    int distance = 0;
+    if (!currentCar->light) {
+        currentCar->light = true;
+        countOp++;
+    }
+    while (true) {
+        currentCar = currentCar->next;
+        distance++;
+        countOp++;
+        if (currentCar->light) {
+            currentCar->light = false;
+            countOp++;
+            for (int stepsBack = 0; stepsBack < distance; stepsBack++) {
+                currentCar = currentCar->prev;
+                countOp++;
+            }
+            if (currentCar == first && !currentCar->light) {
+                return distance;
+            }
 
+            distance = 0;
+        }
+    }
+}
 int Train::getOpCount() const {
     return countOp;
 }
