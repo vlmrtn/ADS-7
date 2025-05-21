@@ -26,33 +26,31 @@ void Train::addCar(bool light) {
         newCage->next = first;
         first->prev = newCage;
     }
-    if (light) {
-        countOp++;
-    }
 }
 int Train::getLength() {
     if (!first) return 0;
     countOp = 0;
-    Cage* currentCar = first;
-    int distance = 0;
-    if (!currentCar->light) {
-        currentCar->light = true;
+    Cage* current = first;
+    if (!current->light) {
+        current->light = true;
         countOp++;
     }
+    int length = 0;
     while (true) {
-        currentCar = currentCar->next;
-        distance++;
-        if (currentCar->light) {
-            currentCar->light = false;
+        current = current->next;
+        length++;
+        countOp++;
+        if (current->light) {
+            current->light = false;
             countOp++;
-            for (int stepsBack = 0; stepsBack < distance; stepsBack++) {
-                currentCar = currentCar->prev;
+            for (int i = 0; i < length; i++) {
+                current = current->prev;
+                countOp++;
             }
-            if (currentCar == first && !currentCar->light) {
-                return distance;
+            if (current == first && !current->light) {
+                return length;
             }
-
-            distance = 0;
+            length = 0;
         }
     }
 }
