@@ -42,13 +42,11 @@ int Train::getLength() {
     while (true) {
         currentCar = currentCar->next;
         distance++;
-        countOp++;
         if (currentCar->light) {
             currentCar->light = false;
             countOp++;
             for (int stepsBack = 0; stepsBack < distance; stepsBack++) {
                 currentCar = currentCar->prev;
-                countOp++;
             }
             if (currentCar == first && !currentCar->light) {
                 return distance;
