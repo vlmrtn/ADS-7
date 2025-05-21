@@ -26,6 +26,9 @@ void Train::addCar(bool light) {
         newCage->next = first;
         first->prev = newCage;
     }
+    if (light) {
+        countOp++;
+    }
 }
 int Train::getLength() {
     if (!first) return 0;
