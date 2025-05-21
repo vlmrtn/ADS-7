@@ -16,6 +16,8 @@ class Train {
   ~Train();
   void addCar(bool light); // добавить вагон с начальным состоянием лампочки
   int getLength();          // вычислить длину поезда
-  int getOpCount() const;         // вернуть число переходов (из вагона в вагон)
+  int getOpCount() const;
+  void toggleLight(Cage* cage);
+
 };
 #endif  // INCLUDE_TRAIN_H_
