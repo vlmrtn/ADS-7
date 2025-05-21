@@ -57,10 +57,3 @@ int Train::getLength() {
 int Train::getOpCount() const {
     return countOp;
 }
-void Train::toggleLight(Cage* cage) {
-    if (cage) {
-        cage->light = !cage->light;
-        countOp++;
-    }
-}
-
