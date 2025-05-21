@@ -38,8 +38,8 @@ int Train::getLength() {
     int length = 0;
     while (true) {
         current = current->next;
-        length++;
         countOp++;
+        length++;
         if (current->light) {
             current->light = false;
             countOp++;
@@ -59,11 +59,8 @@ int Train::getOpCount() const {
 }
 void Train::toggleLight(Cage* cage) {
     if (cage) {
-        if (cage->light) {
-            countOp--;
-        } else {
-            countOp++;
-        }
         cage->light = !cage->light;
+        countOp++;
     }
 }
+
