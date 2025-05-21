@@ -26,10 +26,7 @@ void Train::addCar(bool light) {
         newCage->next = first;
         first->prev = newCage;
     }
-    if (light) countOp++;
 }
-
-
 int Train::getLength() {
     if (!first) return 0;
     int length = 0;
@@ -42,13 +39,11 @@ int Train::getLength() {
 }
 
 int Train::getOpCount() const {
-    int count = 0;
-    if (!first) return 0;
-    const Cage* current = first;
-    do {
-        if (current->light)  count++;
-        current = current->next;
-    } while (current != first);
-    return count;
+    return countOp;
 }
-
+void Train::toggleLight(Cage* cage) {
+    if (cage) {
+        cage->light = !cage->light;
+        countOp++;
+    }
+}
