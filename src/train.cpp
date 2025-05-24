@@ -46,6 +46,7 @@ int Train::getLength() {
             int steps = length;
             while (steps--) {
                 current = current->prev;
+                countOp++;
             }
             if (!current->light) {
                 return length;
@@ -53,6 +54,7 @@ int Train::getLength() {
                 steps = length;
                 while (steps--) {
                     current = current->next;
+                    countOp++;
                 }
                 length++;
                 continue;
