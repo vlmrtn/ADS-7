@@ -33,24 +33,30 @@ int Train::getLength() {
     Cage* current = first;
     if (!current->light) {
         current->light = true;
-        countOp++;
     }
-    int length = 0;
+    int length = 1;
     while (true) {
         current = current->next;
         countOp++;
-        length++;
-        if (current->light) {
+        if (!current->light) {
+            length++;
+            continue;
+        } else {
             current->light = false;
-            countOp++;
-            for (int i = 0; i < length; i++) {
+            int steps = length;
+            while (steps--) {
                 current = current->prev;
-                countOp++;
             }
-            if (current == first && !current->light) {
+            if (!current->light) {
                 return length;
+            } else {
+                steps = length;
+                while (steps--) {
+                    current = current->next;
+                }
+                length++;
+                continue;
             }
-            length = 0;
         }
     }
 }
